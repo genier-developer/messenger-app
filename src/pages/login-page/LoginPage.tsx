@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import {useNavigate} from "react-router-dom";
+import s from './login-page.module.scss'
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate()
@@ -9,23 +10,27 @@ export const LoginPage: FC = () => {
     navigate("/chat")
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Login to WhatsApp Chat</h1>
-        <div>
-          <label>ID</label>
-          <input
-            type='text'
-            onChange={()=>{}}
-          />
-          <label>API Token</label>
-          <input
-            type="text"
-            id="apiTokenInstance"
-            onChange={() => {}}
-          />
+    <div className={s.container}>
+      <form onSubmit={handleSubmit} className={s.form}>
+        <h1>Login to WhatsApp</h1>
+        <div className={s.form}>
+          <div className={s.input}>
+            <label>ID</label>
+            <input
+              type='text'
+              onChange={()=>{}}
+            />
+          </div>
+          <div className={s.input}>
+            <label>API Token</label>
+            <input
+              type="text"
+              id="apiTokenInstance"
+              onChange={() => {}}
+            />
+          </div>
         </div>
-        <button>Submit</button>
+        <button type="submit">Login</button>
       </form>
     </div>
 

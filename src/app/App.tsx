@@ -1,4 +1,3 @@
-import '../App.css'
 import {FC} from "react";
 import {LoginPage} from "../pages/login-page/LoginPage.tsx";
 import {ChatPage} from "../pages/chat-page/ChatPage.tsx";
