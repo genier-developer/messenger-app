@@ -1,8 +1,8 @@
 import {FC} from 'react';
 import {useNavigate} from "react-router-dom";
-import s from './login-page.module.scss'
+import s from './login.module.scss'
 
-export const LoginPage: FC = () => {
+export const Login: FC = () => {
   const navigate = useNavigate()
 
   const handleSubmit = () =>{

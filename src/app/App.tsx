@@ -1,7 +1,7 @@
 import {FC} from "react";
-import {LoginPage} from "../pages/login-page/LoginPage.tsx";
-import {ChatPage} from "../pages/chat-page/ChatPage.tsx";
-import {NotFoundPage} from "../pages/error-page/NotFoundPage.tsx";
+import {Login} from "../pages/login/login.tsx";
+import {Chat} from "../pages/chat/chat.tsx";
+import {NotFound} from "../pages/error/not-found.tsx";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 export const App: FC = () => {
@@ -9,9 +9,9 @@ export const App: FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path={"login"} element={<LoginPage/>}/>
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="*" element={<NotFoundPage />}/>
+        <Route path={"login"} element={<Login/>}/>
+        <Route path="/chat" element={<Chat />} />
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </Router>
   )
