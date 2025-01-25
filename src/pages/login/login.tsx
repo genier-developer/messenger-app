@@ -1,25 +1,32 @@
-import { FC, useState } from 'react';
+import {ChangeEvent, FC, FormEvent, useCallback, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './login.module.scss';
 
 export const Login: FC = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState('');
-  const [apiToken, setApiToken] = useState('');
+  const [idInstance, setIdInstance] = useState('');
+  const [apiTokenInstance, setApiTokenInstance] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!id.trim() || !apiToken.trim()) {
-      setError('Both fields are required.');
-      return;
+    if (!idInstance.trim() || !apiTokenInstance.trim()) {
+      setError('Both inputs are required')
+      return
+    } else {
+      localStorage.setItem("idInstance", idInstance.trim() )
+      localStorage.setItem("apiTokenInstance", apiTokenInstance.trim())
+      setError('');
+      navigate('/chat');
     }
-
-    console.log('Login Successful!');
-    setError('');
-    navigate('/chat');
   };
+  const handleIdChange =  useCallback((e: ChangeEvent<HTMLInputElement>)=>{
+    setIdInstance(e.target.value)
+  }, [])
+  const handleApiTokenChange = useCallback((e: ChangeEvent<HTMLInputElement>)=>{
+    setApiTokenInstance((e.target.value))
+  }, [])
 
   return (
     <div className={s.container}>
@@ -32,8 +39,8 @@ export const Login: FC = () => {
           <input
             type="text"
             id="id"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={idInstance}
+            onChange={handleIdChange}
             placeholder="Enter your ID"
           />
         </div>
@@ -43,8 +50,8 @@ export const Login: FC = () => {
           <input
             type="text"
             id="apiToken"
-            value={apiToken}
-            onChange={(e) => setApiToken(e.target.value)}
+            value={apiTokenInstance}
+            onChange={handleApiTokenChange}
             placeholder="Enter your API token"
           />
         </div>
